@@ -1,0 +1,11 @@
+# Flask's extensions
+
+Flask-SQLAlchemy 
+Flask-Migrate 
+Flask-WTF 
+Flask-Login 
+Flask-Bcrypt
+
+# PostgreSQL
+
+psycopg2-binary
