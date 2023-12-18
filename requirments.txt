@@ -7,5 +7,7 @@ Flask-Login
 Flask-Bcrypt
 
 # PostgreSQL
-
 psycopg2-binary
+
+# Others 
+#  npm install -g tailwindcss postcss autoprefixer
