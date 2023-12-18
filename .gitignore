@@ -1,0 +1,14 @@
+# .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+venv/
+node_modules/
+__pycache__/
+.mypy_cache/
+.idea/
+.vscode/
+app.py
