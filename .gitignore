@@ -12,3 +12,4 @@ __pycache__/
 .idea/
 .vscode/
 app.py
+migrations/
