@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ super() }}
+    
+{% endblock %}
+{% block title %}Welcome{% endblock %}
+
+{% block body %}
+    {{ super() }}    
+    {% block scripts %}
+        {{ super() }}
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="h5">Welcome</h1>
+    <hr class="my-5">    
+    
+    
+{% endblock %}

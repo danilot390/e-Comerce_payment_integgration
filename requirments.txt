@@ -5,9 +5,15 @@ Flask-Migrate
 Flask-WTF 
 Flask-Login 
 Flask-Bcrypt
+flask_testing
 
 # PostgreSQL
 psycopg2-binary
+
+# Others
+email_validator
+pytest
+factory_boy
 
 # Others 
 #  npm install -g tailwindcss postcss autoprefixer

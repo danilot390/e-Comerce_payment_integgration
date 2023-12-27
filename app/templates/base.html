@@ -1,0 +1,60 @@
+{% block doc -%}
+<!doctype html>
+<html lang="en">
+{%- block html %}
+<head>
+  {%- block metas %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {%- endblock metas %}
+
+  {%- block head %}
+    <title>{% block title %}{{title|default}} {% endblock title %}</title>      
+  
+  {%- block styles %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/fav.png') }}"type="image/x-icon">  
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"%}">  
+  {%- endblock styles %}
+  {%- endblock head %}  
+</head>
+<body class="bg-gray-100">
+  
+  {% block body -%}
+  {% block navbar %}
+  {%- endblock navbar %}  
+  <div class="h-screen flex flex-row flex-wrap">
+
+  {% block sidebar %}
+  {%- endblock %}
+
+  <!-- strat content -->
+  <div class="bg-gray-100 flex-1 p-6 md:mt-16">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible" role="alert"><button type="button"
+            data-dismiss="alert"
+            class="close">&times;</button>
+            <h4 class="alert-heading">Well done!</h4>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% block content -%}    
+    {%- endblock content %}
+  </div>
+  <!-- end content -->
+
+</div>
+  
+
+  {% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>  
+  {%- endblock scripts %}  
+  {%- endblock body %}
+</body>    
+{%- endblock html %}
+</html>
+{% endblock doc -%}
+    
+
+
