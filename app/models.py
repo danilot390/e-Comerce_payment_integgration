@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
 # Define the User model
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -15,7 +16,7 @@ class User(db.Model):
 
     # Define a representation for User instances (for debugging purposes)
     def __repr__(self):
-        return f"User( '{self.username}', '{self.email}')"
+        return f'<User {self.username}>'
     
     def set_password(self, password):
         # Hash and set the user's password

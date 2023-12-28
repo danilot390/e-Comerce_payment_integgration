@@ -4,7 +4,7 @@ class Config:
     SECRET_KEY = 'CLASH OF KINGS'
 
     # Database configuration
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/ecommerce_flask'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:""@localhost/ecommerce_flask'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Debug mode
