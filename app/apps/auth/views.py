@@ -3,18 +3,18 @@ from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 
 # App modules
-from app.models import User
+from app.models.auth import User
 
 # Local scripts
 from app.forms import LoginForm, RegistrationForm
 from . import auth
-from .database import create_user, get_user_by_email, get_user_by_username
+from .controllers import create_user, get_user_by_email, get_user_by_username
 
 @auth.route('/signup')
 def signup_get():
-    # If the user is alreaafy authenticated, redirect to the home page 
+    # If the user is alreaafy authenticated, redirect to the main.home page 
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     
     # Create a Register Form
     register_form = RegistrationForm()
@@ -34,9 +34,13 @@ def signup_post():
 
     # Check if the form is correct
     if register_form.validate_on_submit():
+        # Create a instance to new user
+        new_user = User(username =register_form.username.data,
+                        email=register_form.email.data,
+                        password=register_form.password.data)
         # Check if the username and email are unique
-        existing_user_username = get_user_by_username(register_form.username.data)
-        existing_user_email = get_user_by_email(register_form.email.data)
+        existing_user_username = User.get_by_username(username=register_form.username.data)
+        existing_user_email = User.get_by_email(email=register_form.email.data)
 
         if existing_user_username:
             flash('Username already taken. Please choose another.','danger')
@@ -44,21 +48,15 @@ def signup_post():
             flash('Email adddress already registered. Please use another.','danger')
         else:
             # Create a new user
-            create_user(
-                register_form.username.data,
-                register_form.email.data,
-                register_form.password.data
-                )
+            new_user.save()
             
-            # Get user
-            user = get_user_by_username(register_form.username.data)
             # Login with new user
-            login_user(user)
+            login_user(new_user)
 
             # Message of congratulations
             flash('Congratulations, you are now registered user!')
-            # Redirect to home
-            return redirect(url_for('home'))
+            # Redirect to main.home
+            return redirect(url_for('main.home'))
     
     # Prepare the context for rendering Register page
     context = {
@@ -70,9 +68,9 @@ def signup_post():
 
 @auth.route('/login', methods=['GET'])
 def login_get():
-    # If the user is alreaafy authenticated, redirect to the home page 
+    # If the user is alreaafy authenticated, redirect to the main.home page 
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
 
     # Create a login form
     login_form = LoginForm()
@@ -86,9 +84,9 @@ def login_get():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-    # If the user is alreaafy authenticated, redirect to the home page 
+    # If the user is alreaafy authenticated, redirect to the main.home page 
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     
     # Create a login form
     login_form = LoginForm()
@@ -103,7 +101,7 @@ def login_post():
             # Login in the user
             login_user(user)
             flash('Login successful!')
-            return redirect(url_for('home'))
+            return redirect(url_for('main.home'))
         else:
             # Flash an error message if login fails
             flash('Login failed. Check your username & password')
@@ -123,4 +121,4 @@ def logout():
     logout_user()
 
     # Redirect on the url Index
-    return redirect(url_for('index')) 
+    return redirect(url_for('auth.login_get')) 
