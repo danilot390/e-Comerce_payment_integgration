@@ -15,3 +15,4 @@ app.py
 migrations/
 app/config.py
 .DS_Store
+/instance/config.py # Real configuration includes details about your database and other sensitive information, which is better kept secret.

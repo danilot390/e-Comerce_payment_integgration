@@ -3,8 +3,8 @@ import sys
 
 sys.path.append('/project')
 
-import app.create_all
-import app.db
+from app import create_app
+from app.models import db
 
 # Create aplication
 @pytest.fixture

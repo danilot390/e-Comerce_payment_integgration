@@ -6,6 +6,7 @@ from flask_login import LoginManager
 # Import database instance and configuration from other modules
 from .models import db, User
 from config import Config
+from instance.config import InstanceConfig
 from .config import AppConfig
 from .apps.auth import auth
 from .main import main
@@ -17,6 +18,8 @@ def create_app():
     
     # Load configuration from a Config class
     app.config.from_object(Config)
+    # Load instance-specific configurations
+    app.config.from_object(InstanceConfig)
     # Override Flask app-specific configuration
     app.config.from_object(AppConfig)
     

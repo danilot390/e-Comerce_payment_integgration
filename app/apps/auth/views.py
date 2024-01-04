@@ -8,7 +8,6 @@ from app.models.auth import User
 # Local scripts
 from app.forms import LoginForm, RegistrationForm
 from . import auth
-from .controllers import create_user, get_user_by_email, get_user_by_username
 
 @auth.route('/signup')
 def signup_get():
