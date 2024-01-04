@@ -7,30 +7,38 @@ This app is a Flask web application that implements best practices in every way.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [Contributing] (#contributing)
+- [Contributing](#contributing)
+- [TESTING](#testing)
 
 ## Installation
 
 To run E-COMERECE PAYMENT INTEGRATION, follow these steps:
     
-    1. Clone the repository:
+1. Clone the repository:
     
     ```bash
     git clone https://github.com/danilot390/e-Comerce_payment_integgration.git
     cd e-Comerce_payment_integgration
+    ```
 
-    1. Install dependencies:
+2. Install dependencies:
 
+    ```bash
     pip install -r requirements.txt
-
-    2. Set up thew database:
+    ```
     
+
+3. Set up thew database:
+    
+    ```bash
     flask db init
     flask db migrate
     flask db upgrade
+    ```
+    
 
-    3. Run the application:
-
+4. Run the application:
+    ```bash
     flask run
     ```
 
